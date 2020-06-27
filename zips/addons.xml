@@ -5,7 +5,7 @@ version="3.1.5"
 name="TheMovieDb Helper"
 provider-name="jurialmunkey">
 <requires>
-  <import addon="xbmc.python" version="2.26.0"/>
+  <import addon="xbmc.python" version="3.0.0"/>
   <import addon="script.module.simplecache" version="1.0.11" />
   <import addon="script.module.requests" version="2.9.1"/>
   <import addon="script.module.pil" version="1.1.7"/>
@@ -17,45 +17,45 @@ provider-name="jurialmunkey">
 <extension point="xbmc.python.script" library="script.py" />
 <extension point="kodi.context.item">
   <menu id="kodi.core.main">
-    <item library="context-play.py">
+    <item library="context.py" args="play">
       <label>$ADDON[plugin.video.themoviedb.helper 32146]</label>
       <visible>[String.IsEqual(ListItem.dbtype,episode) + !String.IsEmpty(ListItem.Season) + !String.IsEmpty(ListItem.Episode)] | [String.IsEqual(ListItem.dbtype,movie)]</visible>
     </item>
-    <item library="context-open.py">
+    <item library="context.py" args="open">
       <label>$ADDON[plugin.video.themoviedb.helper 32147]</label>
       <visible>String.IsEqual(ListItem.dbtype,episode) + !String.IsEmpty(ListItem.Property(tvshow.tmdb_id))</visible>
     </item>
     <menu>
       <label>$ADDON[plugin.video.themoviedb.helper 32145]</label>
-      <item library="context-watchlist.py">
+      <item library="context.py" args="watchlist">
         <label>$ADDON[plugin.video.themoviedb.helper 32148]</label>
         <visible>!String.IsEmpty(ListItem.Property(Container.Info)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth)) + !String.IsEmpty(ListItem.Property(tmdb_id)) + [String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,tvshow)]</visible>
       </item>
-      <item library="context-history.py">
+      <item library="context.py" args="history">
         <label>$ADDON[plugin.video.themoviedb.helper 32149]</label>
         <visible>!String.IsEmpty(ListItem.Property(Container.Info)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth)) + !String.IsEmpty(ListItem.Property(tmdb_id)) + [String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,tvshow)]</visible>
       </item>
-      <item library="context-collection.py">
+      <item library="context.py" args="collection">
         <label>$ADDON[plugin.video.themoviedb.helper 32150]</label>
         <visible>!String.IsEmpty(ListItem.Property(Container.Info)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth)) + !String.IsEmpty(ListItem.Property(tmdb_id)) + [String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,tvshow)]</visible>
       </item>
-      <item library="context-library.py">
+      <item library="context.py" args="library">
         <label>$ADDON[plugin.video.themoviedb.helper 32151]</label>
         <visible>!String.IsEmpty(ListItem.Property(Container.Info)) + !String.IsEmpty(ListItem.Property(tmdb_id)) + [String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,tvshow) | String.IsEqual(ListItem.dbtype,season)]</visible>
       </item>
-      <item library="context-library-userlist.py">
+      <item library="context.py" args="library_userlist">
         <label>$ADDON[plugin.video.themoviedb.helper 32151]</label>
         <visible>!String.IsEmpty(ListItem.Property(Container.Info)) + String.IsEqual(ListItem.Property(Item.Info),trakt_userlist)</visible>
       </item>
-      <item library="context-addtouserlist.py">
+      <item library="context.py" args="add_to_userlist">
         <label>$ADDON[plugin.video.themoviedb.helper 32140]</label>
         <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth)) + [String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,tvshow)] + [!String.IsEmpty(ListItem.Property(tmdb_id)) | !String.IsEmpty(ListItem.DBID)]</visible>
       </item>
-      <item library="context-removefromuserlist.py">
+      <item library="context.py" args="remove_from_userlist">
         <label>$ADDON[plugin.video.themoviedb.helper 32152]</label>
         <visible>!String.IsEmpty(Window(Home).Property(TMDbHelper.TraktIsAuth)) + !String.IsEmpty(Window(Home).Property(TMDbHelper.TraktUserSlug)) + !String.IsEmpty(ListItem.Property(Container.User_Slug)) + !String.IsEmpty(ListItem.Property(Container.List_Slug)) + String.IsEqual(Window(Home).Property(TMDbHelper.TraktUserSlug),ListItem.Property(Container.User_Slug))</visible>
       </item>
-      <item library="context-refresh-item.py">
+      <item library="context.py" args="refresh_item">
         <label>$ADDON[plugin.video.themoviedb.helper 32153]</label>
         <visible>!String.IsEmpty(ListItem.Property(Container.Info)) + !String.IsEmpty(ListItem.Property(tmdb_id)) + [String.IsEqual(ListItem.dbtype,episode) | String.IsEqual(ListItem.dbtype,movie) | String.IsEqual(ListItem.dbtype,tvshow)]</visible>
       </item>
@@ -168,7 +168,7 @@ version="0.2.0"
 name="Skin Variables"
 provider-name="jurialmunkey">
 <requires>
-  <import addon="xbmc.python" version="2.26.0"/>
+  <import addon="xbmc.python" version="3.0.0"/>
 </requires>
 <extension point="xbmc.python.script" library="script.py" />
 <extension point="xbmc.addon.metadata">
@@ -268,38 +268,6 @@ provider-name="jurialmunkey">
             <screenshot>resources/screenshot-04.jpg</screenshot>
             <screenshot>resources/screenshot-05.jpg</screenshot>
             <screenshot>resources/screenshot-06.jpg</screenshot>
-        </assets>
-    </extension>
-</addon>
-
-<addon id="skin.aura" name="Aura" provider-name="jurialmunkey" version="1.0.5">
-    <requires>
-        <import addon="xbmc.gui" version="5.14.0" />
-        <import addon="script.skinshortcuts" version="0.4.0" />
-        <import addon="script.extendedinfo" version="3.0.0" />
-        <import addon="script.image.resource.select" version="0.0.5" />
-        <import addon="plugin.program.autocompletion" version="1.0.1" />
-        <import addon="resource.images.studios.white" version="0.0.10" />
-        <import addon="resource.images.moviegenreicons.transparent" version="0.0.6" />
-    </requires>
-    <extension debugging="false" defaultthemename="Textures.xbt" effectslowdown="1" point="xbmc.gui.skin">
-        <res aspect="16:9" default="true" folder="1080i" height="1080" width="1920" />
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary lang="en_GB">Minimalistic. Customisable. Multiple Widgets.</summary>
-        <description lang="en_GB">Aura is highly customisable skin with multiple widgets and a horizontal home menu. Aura combines the minimalism and rounded edges of Arctic Zephyr with the sleek customisability of Horizon. Whilst the best Aura experience is had with a remote, Aura has been designed to accomodate mouse and touch users where possible.</description>
-        <platform>all</platform>
-        <license>Creative Commons Attribution Non-Commercial Share-Alike 4.0</license>
-        <forum>https://forum.kodi.tv/showthread.php?tid=328558</forum>
-        <source>https://github.com/jurialmunkey/skin.aura</source>
-        <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-            <screenshot>resources/screenshot-01.jpg</screenshot>
-            <screenshot>resources/screenshot-02.jpg</screenshot>
-            <screenshot>resources/screenshot-03.jpg</screenshot>
-            <screenshot>resources/screenshot-04.jpg</screenshot>
-            <screenshot>resources/screenshot-05.jpg</screenshot>
         </assets>
     </extension>
 </addon>
