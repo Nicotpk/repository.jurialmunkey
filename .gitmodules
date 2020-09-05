@@ -1,9 +1,6 @@
 [submodule "skin.arctic.zephyr.2"]
 	path = skin.arctic.zephyr.2
 	url = https://github.com/jurialmunkey/skin.arctic.zephyr.2
-[submodule "skin.arctic.horizon"]
-	path = skin.arctic.horizon
-	url = https://github.com/jurialmunkey/skin.arctic.horizon
 [submodule "plugin.video.themoviedb.helper"]
 	path = plugin.video.themoviedb.helper
 	url = https://github.com/jurialmunkey/plugin.video.themoviedb.helper
