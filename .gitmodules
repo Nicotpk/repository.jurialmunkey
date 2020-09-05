@@ -10,3 +10,6 @@
 [submodule "screensaver.arctic.mirage"]
 	path = screensaver.arctic.mirage
 	url = https://github.com/drinfernoo/screensaver.arctic.mirage
+[submodule "resource.images.arctic.waves"]
+	path = resource.images.arctic.waves
+	url = https://github.com/drinfernoo/resource.images.arctic.waves
